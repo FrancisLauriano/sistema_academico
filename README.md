@@ -97,8 +97,7 @@ $ pip install -r requirements.txt
 
 ## Executar app :arrow_forward:
 
-**development**
-- Entrar na pasta pasta 'programa_sistema_academico' e executar o comando:
+**development -->** Entrar na pasta pasta 'programa_sistema_academico' e executar o comando:
 
 ```bash
 $ python -m programa_sistema_universitario
