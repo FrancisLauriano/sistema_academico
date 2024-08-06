@@ -56,9 +56,13 @@ O sistema universitário tem como objetivo facilitar a gestão de cursos, alunos
 
 ### Gestão de Cursos: :warning:
 **1. Cadastrar Curso:** Permite adicionar um novo curso ao sistema, especificando seu código, nome e carga horária.
+
 **2. Listar Cursos:** Exibe uma lista de todos os cursos cadastrados no sistema, mostrando o código, nome e carga horária de cada curso.
+
 **3. Buscar Curso:** Permite buscar um curso específico pelo seu código, exibindo suas informações detalhadas.
+
 **4. Atualizar Curso:** Permite atualizar as informações de um curso existente, incluindo seu nome e carga horária.
+
 **5. Deletar Curso:** Permite remover um curso do sistema pelo seu código.
 
 ### Gestão de Alunos: :warning:
