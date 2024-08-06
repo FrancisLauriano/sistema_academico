@@ -20,13 +20,13 @@
 
 :small_blue_diamond: [Funcionalidades](#funcionalidades-video_game) :heavy_check_mark:
 
-:small_blue_diamond: [Diagrama de Classes](./diagrama_de_classe/-technologist) :heavy_check_mark:
-
 :small_blue_diamond: [Modelo Entidade-Realacionamento](./banco_de_dados/sistema_academico.brM3) :heavy_check_mark:
 
 :small_blue_diamond: [Diagrama Entidade-Realacionamento](./banco_de_dados/der_sistema_academico.brM3) :heavy_check_mark:
 
 :small_blue_diamond: [Script de Criação de Banco de Dados e Tabelas](./banco_de_dados/script_database_table_sistema_academico.sql) :heavy_check_mark:
+
+:small_blue_diamond: [Diagrama de Classes](./diagrama_de_classe/-technologist) :heavy_check_mark:
 
 :small_blue_diamond: [Linguagens, tecnologias, dependências e libs utilizadas](#linguagens-tecnologias-dependências-e-libs-utilizadas-hammer_and_wrench-gear-books)
 
