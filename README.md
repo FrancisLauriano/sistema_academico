@@ -55,22 +55,31 @@ O sistema universitário tem como objetivo facilitar a gestão de cursos, alunos
 ## Funcionalidades :video_game:
 
 ### Gestão de Cursos: :warning:
-**1. Cadastrar Curso:** Permite adicionar um novo curso ao sistema, especificando seu código, nome e carga horária.
-**2. Listar Cursos:** Exibe uma lista de todos os cursos cadastrados no sistema, mostrando o código, nome e carga horária de cada curso.
-**3. Buscar Curso:** Permite buscar um curso específico pelo seu código, exibindo suas informações detalhadas.
-**4. Atualizar Curso:** Permite atualizar as informações de um curso existente, incluindo seu nome e carga horária.
-**5. Deletar Curso:** Permite remover um curso do sistema pelo seu código.
+   **1. Cadastrar Curso:** Permite adicionar um novo curso ao sistema, especificando seu código, nome e carga horária.
+
+   **2. Listar Cursos:** Exibe uma lista de todos os cursos cadastrados no sistema, mostrando o código, nome e carga horária de cada curso.
+
+   **3. Buscar Curso:** Permite buscar um curso específico pelo seu código, exibindo suas informações detalhadas.
+
+   **4. Atualizar Curso:** Permite atualizar as informações de um curso existente, incluindo seu nome e carga horária.
+
+   **5. Deletar Curso:** Permite remover um curso do sistema pelo seu código.
 
 ### Gestão de Alunos: :warning:
-**1. Cadastrar Aluno:** Permite adicionar um novo aluno ao sistema, especificando seu número de matrícula, nome e data de nascimento.
-**2. Listar Alunos:** Exibe uma lista de todos os alunos cadastrados no sistema, mostrando o número de matrícula, nome e data de nascimento de cada aluno.
-**3. Buscar Aluno:** Permite buscar um aluno específico pelo seu número de matrícula, exibindo suas informações detalhadas.
-**4. Atualizar Aluno:** Permite atualizar as informações de um aluno existente, incluindo seu nome e data de nascimento.
-**5. Deletar Aluno:** Permite remover um aluno do sistema pelo seu número de matrícula.
+   **1. Cadastrar Aluno:** Permite adicionar um novo aluno ao sistema, especificando seu número de matrícula, nome e data de nascimento.
+
+   **2. Listar Alunos:** Exibe uma lista de todos os alunos cadastrados no sistema, mostrando o número de matrícula, nome e data de nascimento de cada aluno.
+
+   **3. Buscar Aluno:** Permite buscar um aluno específico pelo seu número de matrícula, exibindo suas informações detalhadas.
+
+   **4. Atualizar Aluno:** Permite atualizar as informações de um aluno existente, incluindo seu nome e data de nascimento.
+
+   **5. Deletar Aluno:** Permite remover um aluno do sistema pelo seu número de matrícula.
 
 ### Matrículas: :warning:
-**1. Registrar Matrícula:** Permite registrar a matrícula de um aluno em um curso, especificando a data da matrícula.
-**2. Listar Matrículas:** Exibe uma lista de todas as matrículas registradas no sistema, mostrando informações detalhadas sobre os alunos matriculados, os cursos e as datas das matrículas.
+   **1. Registrar Matrícula:** Permite registrar a matrícula de um aluno em um curso, especificando a data da matrícula.
+
+   **2. Listar Matrículas:** Exibe uma lista de todas as matrículas registradas no sistema, mostrando informações detalhadas sobre os alunos matriculados, os cursos e as datas das matrículas.
 
 
 ... 
