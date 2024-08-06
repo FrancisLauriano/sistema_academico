@@ -14,7 +14,7 @@
 
 ### Tópicos 
 
-:small_blue_diamond: [Descrição do cenário](#descrição-do-cenario-writing_hand) :heavy_check_mark:
+:small_blue_diamond: [Descrição do cenário](#descrição-do-cenário-writing_hand) :heavy_check_mark:
 
 :small_blue_diamond: [Objetivos do projeto](#objetivos-do-projeto-dart) :heavy_check_mark:
 
