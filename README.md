@@ -26,7 +26,11 @@
 
 :small_blue_diamond: [Script de Criação de Banco de Dados e Tabelas](./banco_de_dados/script_database_table_sistema_academico.sql) :heavy_check_mark:
 
-:small_blue_diamond: [Diagrama de Classes](./diagrama_de_classe/-technologist) :heavy_check_mark:
+:small_blue_diamond: [Diagrama de Classes](./diagrama_de_classe/-technologist) :warning:
+
+:small_blue_diamond: [Instação das depedências](#instação-das-depedências-arrow_down_small) 
+
+:small_blue_diamond: [Executar app](#executar-app-arrow_forward)
 
 :small_blue_diamond: [Linguagens, tecnologias, dependências e libs utilizadas](#linguagens-tecnologias-dependências-e-libs-utilizadas-hammer_and_wrench-gear-books)
 
@@ -81,6 +85,23 @@ O sistema universitário tem como objetivo facilitar a gestão de cursos, alunos
 
    **2. Listar Matrículas:** Exibe uma lista de todas as matrículas registradas no sistema, mostrando informações detalhadas sobre os alunos matriculados, os cursos e as datas das matrículas.
 
+
+... 
+
+## Instação das depedências :arrow_down_small:
+
+```bash
+$ pip install -r requirements.txt
+
+```
+
+## Executar app :arrow_forward:
+
+```bash
+# development
+$ python -m programa_sistema_universitario
+
+```
 
 ... 
 
