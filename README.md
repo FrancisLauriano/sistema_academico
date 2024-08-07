@@ -94,7 +94,7 @@ $ pip install -r requirements.txt
 **development -->** Entrar na pasta pasta 'programa_sistema_academico' e executar o comando:
 
 ```bash
-$ python -m programa_sistema_universitario
+$ python -m programa_sistema_academico
 ```
 
 ... 
