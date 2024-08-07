@@ -80,12 +80,6 @@ O sistema universitário tem como objetivo facilitar a gestão de cursos, alunos
 
    **5. Deletar Aluno:** Permite remover um aluno do sistema pelo seu número de matrícula.
 
-### Matrículas: :warning:
-   **1. Registrar Matrícula:** Permite registrar a matrícula de um aluno em um curso, especificando a data da matrícula.
-
-   **2. Listar Matrículas:** Exibe uma lista de todas as matrículas registradas no sistema, mostrando informações detalhadas sobre os alunos matriculados, os cursos e as datas das matrículas.
-
-
 ... 
 
 ## Instação das depedências :arrow_down_small:
