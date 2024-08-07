@@ -50,7 +50,7 @@ Uma universidade deseja implementar um sistema para gerenciar seus cursos, aluno
 
 <p align="justify">
 
-O sistema universitário tem como objetivo facilitar a gestão de cursos, alunos e matrículas em uma universidade. Ele oferece uma interface simples e intuitiva para que administradores possam realizar operações comuns como cadastrar, listar, buscar, atualizar e deletar informações relacionadas aos cursos e alunos.
+O sistema acadâmico tem como objetivo facilitar a gestão de cursos, alunos e matrículas em uma universidade. Ele oferece uma interface simples e intuitiva para que administradores possam realizar operações comuns como cadastrar, listar, buscar, atualizar e deletar informações relacionadas aos cursos e alunos.
 
 
 </p>
