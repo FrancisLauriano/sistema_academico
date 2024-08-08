@@ -94,7 +94,7 @@ $ pip install -r requirements.txt
 **development:** 
 - Entrar na pasta 'programa_sistema_academico':
 ```bash
-$ make dev
+$ python __main__.py
 ```
 
 ... 
