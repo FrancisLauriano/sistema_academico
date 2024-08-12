@@ -113,7 +113,7 @@ $ python __main__.py
 
 Time responsável pelo desenvolvimento do projeto
 
-| [<img src="" width=115><br><sub>Emerson Silva</sub>](https://github.com) | [<img src="https://avatars.githubusercontent.com/u/130801505?v=4" width=115><br><sub>Francis Lauriano</sub>](https://github.com/FrancisLauriano) | [<img src="" width=115><br><sub>Francisco Nogueira</sub>](https://github.com/) | [<img src="" width=115><br><sub>Hytalo Soares</sub>](https://github.com/) | [<img src="" width=115><br><sub>Suellen </sub>](https://github.com/) |
+| [<img src="https://avatars.githubusercontent.com/u/140443316?v=4" width=115><br><sub>Emerson Silva</sub>](https://github.com/emessonSilva) | [<img src="https://avatars.githubusercontent.com/u/130801505?v=4" width=115><br><sub>Francis Lauriano</sub>](https://github.com/FrancisLauriano) | [<img src="" width=115><br><sub>Francisco Nogueira</sub>](https://github.com/) | [<img src="https://avatars.githubusercontent.com/u/173216473?v=4" width=115><br><sub>Hytalo Leão</sub>](https://github.com/HytaloLeao) | [<img src="https://avatars.githubusercontent.com/u/83297934?v=4" width=115><br><sub>Suellen Arruda</sub>](https://github.com/SUEARRUDA) |
 | :---: | :---: | :---: | :---: | :---:
 
 
