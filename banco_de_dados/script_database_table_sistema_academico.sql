@@ -1,5 +1,7 @@
 CREATE DATABASE sistema_academico;
 
+-- USE sistema_academico;
+
 CREATE TABLE Alunos (
     id_aluno INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,

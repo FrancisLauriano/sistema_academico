@@ -1,5 +1,18 @@
-from database.database import Database
+from aluno import Aluno
+from curso import Curso
 
-if __name__ == "__main__":
-    db = Database()
-    db.criar_tabelas()
+
+# class Menu:
+    # def __init__(self):
+    
+
+    # def exibir_menu(self):
+        
+
+          
+
+    
+
+# if __name__ == "__main__":
+#     menu = Menu()
+#     menu.exibir_menu()
