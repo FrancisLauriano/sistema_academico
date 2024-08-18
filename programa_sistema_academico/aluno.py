@@ -1,6 +1,7 @@
 #código considerando uma pasta config e uma databese
 #Caso ficar só com o arquivo config vou fazer os ajustes necessários
 
+#aluno.py:
 from database import Database
 
 class Aluno:
@@ -22,11 +23,14 @@ class Aluno:
         db.get_conexao().close()
         return True
 
+
     @staticmethod
     def listar_alunos():
         db = Database()
         db.conectar()
-        query = '''SELECT * FROM Alunos'''
+        query = '''SELECT a.nome, a.data_nascimento, a.matricula, a.data_matricula, c.codigo, c.nome, c.carga_horaria 
+        FROM Alunos AS a 
+        INNER JOIN Cursos AS c ON a.id_curso_fk = c.id_curso'''
         db.get_cursor().execute(query)
         alunos = db.get_cursor().fetchall()
         db.get_cursor().close()
@@ -36,7 +40,10 @@ class Aluno:
     def buscar_aluno(self):
         db = Database()
         db.conectar()
-        query = '''SELECT * FROM Alunos WHERE matricula = %s'''
+        query = '''SELECT a.nome, a.data_nascimento, a.matricula, a.data_matricula, c.codigo, c.nome, c.carga_horaria
+        FROM Alunos AS a
+        INNER JOIN Cursos AS c ON a.id_curso_fk = c.id_curso
+        WHERE a.matricula = %s'''
         db.get_cursor().execute(query, (self.__matricula,))
         aluno = db.get_cursor().fetchone()
         db.get_cursor().close()
@@ -48,7 +55,7 @@ class Aluno:
         db.conectar()
         query = '''UPDATE Alunos 
                    SET nome = %s, data_nascimento = %s, matricula = %s, id_curso_fk = %s 
-                   WHERE id_aluno = %s OR matricula = %s'''
+                   WHERE matricula = %s'''
         db.get_cursor().execute(query, (
             novo_nome or self.__nome, 
             nova_data_nascimento or self.__data_nascimento, 
@@ -65,10 +72,11 @@ class Aluno:
         db = Database()
         db.conectar()
         query = '''DELETE FROM Alunos WHERE matricula = %s'''
-        db.get_cursor().execute(query, (self.__id_aluno, self.__matricula))
+        db.get_cursor().execute(query, (self.__matricula))
         db.get_conexao().commit()
         db.get_cursor().close()
         db.get_conexao().close()
         return True
+
 
 

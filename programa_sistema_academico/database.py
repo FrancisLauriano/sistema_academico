@@ -1,3 +1,4 @@
+#database.py:
 from config import Config
 import mysql.connector
 from mysql.connector import Error
@@ -34,4 +35,8 @@ class Database:
 
     def get_conexao(self):
         return self.__conexao
+        
+
+
+
         
