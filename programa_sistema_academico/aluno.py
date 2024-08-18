@@ -1,6 +1,3 @@
-#código considerando uma pasta config e uma databese
-#Caso ficar só com o arquivo config vou fazer os ajustes necessários
-
 #aluno.py:
 from database import Database
 
@@ -12,11 +9,15 @@ class Aluno:
         self.__matricula = matricula
         self.__id_curso_fk = id_curso_fk
 
-    def adicionar_aluno(self):
+    def adicionar_aluno(self, nome, data_nascimento, matricula, id_curso_fk):
         db = Database()
         db.conectar()
         query = '''INSERT INTO Alunos (nome, data_nascimento, matricula, id_curso_fk) 
                    VALUES (%s, %s, %s, %s)'''
+        self.__nome = nome
+        self.__data_nascimento = data_nascimento
+        self.__matricula = matricula
+        self.__id_curso_fk = id_curso_fk
         db.get_cursor().execute(query, (self.__nome, self.__data_nascimento, self.__matricula, self.__id_curso_fk))
         db.get_conexao().commit()
         db.get_cursor().close()
@@ -37,13 +38,14 @@ class Aluno:
         db.get_conexao().close()
         return alunos
 
-    def buscar_aluno(self):
+    def buscar_aluno_por_matricula(self, matricula):
         db = Database()
         db.conectar()
         query = '''SELECT a.nome, a.data_nascimento, a.matricula, a.data_matricula, c.codigo, c.nome, c.carga_horaria
         FROM Alunos AS a
         INNER JOIN Cursos AS c ON a.id_curso_fk = c.id_curso
         WHERE a.matricula = %s'''
+        self.__matricula = matricula
         db.get_cursor().execute(query, (self.__matricula,))
         aluno = db.get_cursor().fetchone()
         db.get_cursor().close()
@@ -68,10 +70,11 @@ class Aluno:
         db.get_conexao().close()
         return True
 
-    def deletar_aluno(self):
+    def deletar_aluno(self, matricula):
         db = Database()
         db.conectar()
         query = '''DELETE FROM Alunos WHERE matricula = %s'''
+        self.__matricula = matricula
         db.get_cursor().execute(query, (self.__matricula))
         db.get_conexao().commit()
         db.get_cursor().close()

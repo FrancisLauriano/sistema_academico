@@ -77,22 +77,20 @@ class MenuCurso:
                 return
             
             # verifica se já existe cadastro no sistema com a mesma codigo
-            curso = Curso(codigo=codigo)
 
-            if curso.buscar_curso():
+            if self.curso.buscar_curso_por_codigo(codigo=codigo):
                 print(f'\n-----------------------------------------------')  
                 print(f'Número de código de curso já consta no sistema!')
                 print(f'-----------------------------------------------') 
                 pausar_execucao()
                 return
             else:
-                curso = Curso(codigo=codigo, nome=nome, carga_horaria=carga_horaria)
-                curso.adicionar_curso()
+                self.curso.adicionar_curso(codigo=codigo, nome=nome, carga_horaria=carga_horaria)
                 print(f'\n-----------------------------') 
                 print(f'Curso cadastrado com sucesso!')
                 print(f'-----------------------------') 
                 pausar_execucao()
-                return curso
+                return 
         except ValueError:   
             print(f'\n-----------------------------------------') 
             print(f'Oops! Um erro ocorreu. Tente novamente...')   
@@ -108,7 +106,7 @@ class MenuCurso:
         largura_nome = 60
         largura_carga_horaria = 20
 
-        cursos = Curso.listar_cursos()
+        cursos = self.curso.listar_cursos()
         if cursos is not None:
             print(f'\nRESULTADO:')
             print('-'*largura_total)
@@ -140,8 +138,7 @@ class MenuCurso:
 
         codigo = input('Informe o código do curso: ').strip().lower()
 
-        localizar_curso = Curso(codigo=codigo)
-        curso = localizar_curso.buscar_curso()
+        curso = self.curso.buscar_curso_por_codigo(codigo=codigo)
         if curso is not None:
             print(f'\nRESULTADO:')
             print('-'*largura_total)
@@ -165,8 +162,7 @@ class MenuCurso:
         largura_matricula = 20
         largura_data_matricula = 20
 
-        curso = Curso(codigo=codigo)
-        lista_alunos = curso.buscar_alunos_por_curso()
+        lista_alunos = self.curso.buscar_alunos_por_curso(codigo=codigo)
         if lista_alunos is not None:
             print(f'\nAlunos Matriculados:')
             print('-'*largura_total)
@@ -261,8 +257,8 @@ class MenuCurso:
                             pausar_execucao()
                             return 
                         
-                        curso = Curso(codigo=codigo)
-                        localizar_curso = curso.buscar_curso()
+                   
+                        localizar_curso = self.curso.buscar_curso_por_codigo(codigo=codigo)
                         if localizar_curso and curso_encontrado[0] != codigo:
                             print(f'\n-----------------------------------------------')  
                             print(f'Número de código de curso já consta no sistema!')
@@ -270,12 +266,12 @@ class MenuCurso:
                             pausar_execucao()
                             return
 
-                        curso = Curso(codigo=codigo, nome=nome, carga_horaria=carga_horaria)
-                        curso.atualizar_curso()
+
+                        self.curso.atualizar_curso(novo_codigo=codigo, novo_nome=nome, nova_carga_horaria=carga_horaria)
                         print(f'\n-----------------------------')
                         print(f'Curso atualizado com sucesso!')
                         print(f'-----------------------------')
-                        return curso
+                        return 
                     except ValueError:   
                         print(f'\n-----------------------------------------') 
                         print(f'Oops! Um erro ocorreu. Tente novamente...')   
@@ -318,8 +314,7 @@ class MenuCurso:
                     True
                 elif continuar == 1:
                     codigo = curso_encontrado[0]
-                    curso = Curso(codigo=codigo)
-                    curso.deletar_curso()
+                    self.curso.deletar_curso(codigo=codigo)
                     print(f'\n---------------------------')
                     print(f'curso excluído com sucesso!')
                     print(f'---------------------------')
@@ -339,5 +334,6 @@ class MenuCurso:
             print(f'-----------------------')
             pausar_execucao()  
             return None
+
 
 

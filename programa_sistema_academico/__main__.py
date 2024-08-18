@@ -1,3 +1,4 @@
+#main.py:
 from menu_aluno import MenuAluno
 from menu_curso import MenuCurso
 from time import sleep

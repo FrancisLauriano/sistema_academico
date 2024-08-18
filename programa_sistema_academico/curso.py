@@ -10,10 +10,11 @@ class Curso:
         self.__carga_horaria = carga_horaria
 
 
-    def buscar_id_curso_por_codigo(self):
+    def buscar_id_curso_por_codigo(self, codigo):
         db = Database()
         db.conectar()
         query = '''SELECT id_curso FROM Cursos WHERE codigo = %s '''
+        self.__codigo = codigo
         db.get_cursor().execute(query, (self.__codigo,))
         id_curso = db.get_cursor().fetchone()
         db.get_cursor().close()
@@ -21,10 +22,13 @@ class Curso:
         return id_curso
         
 
-    def adicionar_curso(self):
+    def adicionar_curso(self, codigo, nome, carga_horaria):
         db = Database()
         db.conectar()
         query = '''INSERT INTO Cursos (codigo, nome, carga_horaria) VALUES (%s, %s, %s)'''
+        self.__codigo = codigo
+        self.__nome = nome
+        self.__carga_horaria = carga_horaria
         db.get_cursor().execute(query, (self.__codigo, self.__nome, self.__carga_horaria))
         db.get_conexao().commit()
         db.get_cursor().close()
@@ -43,23 +47,25 @@ class Curso:
         return cursos
   
 
-    def buscar_curso(self):
+    def buscar_curso_por_codigo(self, codigo):
         db = Database()
         db.conectar()
         query = '''SELECT codigo, nome, carga_horaria FROM Cursos WHERE codigo = %s'''
+        self.__codigo = codigo
         db.get_cursor().execute(query, (self.__codigo,))
         curso = db.get_cursor().fetchone()
         db.get_cursor().close()
         db.get_conexao().close()
         return curso
     
-    def buscar_alunos_por_curso(self):
+    def buscar_alunos_por_curso(self, codigo):
         db = Database()
         db.conectar()
         query = '''SELECT a.nome, a.data_nascimento, a.matricula, a.data_matricula
         FROM Cursos AS c
         INNER JOIN Alunos AS a ON c.id_curso = a.id_curso_fk
         WHERE c.codigo = %s'''
+        self.__codigo = codigo
         db.get_cursor().execute(query, (self.__codigo,))
         alunos = db.get_cursor().fetchall()
         db.get_cursor().close()
@@ -79,10 +85,11 @@ class Curso:
         db.get_conexao().close()
         return True
 
-    def deletar_curso(self):
+    def deletar_curso(self, codigo):
         db = Database()
         db.conectar()
         query = '''DELETE FROM Cursos WHERE codigo = %s'''
+        self.__codigo = codigo
         db.get_cursor().execute(query, (self.__codigo))
         db.get_conexao().commit()
         db.get_cursor().close()

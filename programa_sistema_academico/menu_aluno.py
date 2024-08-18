@@ -97,8 +97,7 @@ class MenuAluno:
                 return
 
             #verifica qual o id_curso correspondente ao codigo_curso
-            curso = Curso(codigo=codigo_curso)
-            id_curso_fk = curso.buscar_id_curso_por_codigo()
+            id_curso_fk = self.curso.buscar_id_curso_por_codigo(codigo=codigo_curso)
 
             if id_curso_fk is None:
                 print(f'\n---------------------')
@@ -108,22 +107,19 @@ class MenuAluno:
                 return
             
             # verifica se já existe cadsatro no sistema com a mesma matricula(CPF)
-            aluno = Aluno(matricula=matricula)
 
-            if aluno.buscar_aluno():
+            if self.aluno.buscar_aluno_por_matricula(matricula=matricula):
                 print(f'\n-----------------------------------------------') 
                 print(f'Número de matrícula (CPF) já consta no sistema!')
                 print(f'-----------------------------------------------') 
                 pausar_execucao()
                 return
             else:
-                aluno = Aluno(nome=nome, data_nascimento=data_nascimento, matricula=matricula, id_curso_fk=id_curso_fk)
-                aluno.adicionar_aluno()
+                self.aluno.adicionar_aluno(nome=nome, data_nascimento=data_nascimento, matricula=matricula, id_curso_fk=id_curso_fk)
                 print(f'\n-----------------------------') 
                 print(f'Aluno cadastrado com sucesso!')
                 print(f'-----------------------------') 
                 pausar_execucao()
-                return aluno
         except ValueError:   
             print(f'\n-----------------------------------------') 
             print(f'Oops! Um erro ocorreu. Tente novamente...')   
@@ -143,7 +139,7 @@ class MenuAluno:
         largura_nome_curso = 40
         largura_ch_curso = 20
 
-        alunos = Aluno.listar_alunos()
+        alunos = self.aluno.listar_alunos()
         if alunos is not None:
             print(f'\nRESULTADO:')
             print('-'*largura_total)
@@ -182,8 +178,7 @@ class MenuAluno:
 
         matricula = input('Informe o matrícula (CPF) do aluno: ').strip().lower()
 
-        localizar_aluno = Aluno(matricula=matricula)
-        aluno = localizar_aluno.buscar_aluno()
+        aluno = self.aluno.buscar_aluno_por_matricula(matricula=matricula)
         if aluno is not None:
             print(f'\nRESULTADO:')
             print('-'*largura_total)
@@ -282,8 +277,7 @@ class MenuAluno:
                             pausar_execucao()
                             return 
                         
-                        curso = Curso(codigo=codigo_curso)
-                        id_curso_fk = curso.buscar_id_curso_por_codigo()
+                        id_curso_fk = self.curso.buscar_id_curso_por_codigo(codigo=codigo_curso)
                         if id_curso_fk is None:
                             print(f'\n---------------------')
                             print(f'Curso não encontrado.')
@@ -291,8 +285,8 @@ class MenuAluno:
                             pausar_execucao()
                             return
                         
-                        aluno = Aluno(matricula=matricula)
-                        localizar_aluno = aluno.buscar_aluno()
+                        
+                        localizar_aluno = self.aluno.buscar_aluno_por_matricula(matricula=matricula)
                         if localizar_aluno and aluno_encontrado[2] != matricula:
                             print(f'\n-----------------------------------------------') 
                             print(f'Número de matrícula (CPF) já consta no sistema!')
@@ -300,12 +294,12 @@ class MenuAluno:
                             pausar_execucao()
                             return
 
-                        aluno = Aluno(nome=nome, data_nascimento=data_nascimento, matricula=matricula, id_curso_fk=id_curso_fk)
-                        aluno.atualizar_aluno()
+                        
+                        self.aluno.atualizar_aluno(novo_nome=nome, nova_data_nascimento=data_nascimento, nova_matricula=matricula, novo_id_curso_fk=id_curso_fk)
                         print(f'\n-------------------------------')
                         print(f'Aluno atualizado com sucesso!')
                         print(f'-------------------------------')
-                        return aluno
+                        return 
                     except ValueError:   
                         print(f'\n-----------------------------------------') 
                         print(f'Oops! Um erro ocorreu. Tente novamente...')   
@@ -348,8 +342,7 @@ class MenuAluno:
                     True
                 elif continuar == 1:
                     matricula = aluno_encontrado[2]
-                    aluno = Aluno(matricula=matricula)
-                    aluno.deletar_aluno()
+                    self.aluno.deletar_aluno(matricula=matricula)
                     print(f'\n---------------------------')
                     print(f'Aluno excluído com sucesso!')
                     print(f'---------------------------')
@@ -369,5 +362,6 @@ class MenuAluno:
             print(f'-----------------------')
             pausar_execucao()  
             return None
+
 
 
