@@ -26,7 +26,7 @@
 
 :small_blue_diamond: [Script de Criação de Banco de Dados e Tabelas](./banco_de_dados/script_database_table_sistema_academico.sql) :heavy_check_mark:
 
-:small_blue_diamond: [Diagrama de Classes](./diagrama_de_classe/-technologist) :warning:
+:small_blue_diamond: [Diagrama de Classes](./diagrama_de_classe/-technologist) :heavy_check_mark:
 
 :small_blue_diamond: [Instação das depedências](#instação-das-depedências-arrow_down_small) 
 
