@@ -98,6 +98,8 @@ class MenuAluno:
 
             #verifica qual o id_curso correspondente ao codigo_curso
             id_curso_fk = self.curso.buscar_id_curso_por_codigo(codigo=codigo_curso)
+            if id_curso_fk is not None and isinstance(id_curso_fk, tuple):
+                id_curso_fk = id_curso_fk[0]
 
             if id_curso_fk is None:
                 print(f'\n---------------------')
@@ -157,8 +159,7 @@ class MenuAluno:
 
                 print(f'{nome:<{largura_nome}} | {dataNasc:<{largura_DN}} | {matricula:<{largura_matricula}} | {dataMatricula:<{largura_data_matricula}} | {codigo_curso:<{largura_codigo_curso}} | {nome_curso:<{largura_nome_curso}} | {ch_curso:<{largura_ch_curso}}')
                 print('-'*largura_total)
-                pausar_execucao()
-            return alunos
+            pausar_execucao()
         else:
             print(f'\n-----------------------')  
             print(f'Nenhum aluno encontrado')
@@ -238,12 +239,12 @@ class MenuAluno:
                     try:
                         nome = input('Nome (ou clique ENTER para não alterar): ').strip().lower()
                         data_nascimento = input('Data de Nascimento (YYYY-MM-DD) (ou clique ENTER para não alterar): ').strip().lower()
-                        matricula = input('Matrícula (CPF - 11 digitos) (ou clique ENTER para não alterar): ').strip().lower()
+                        nova_matricula = input('Matrícula (CPF - 11 digitos) (ou clique ENTER para não alterar): ').strip().lower()
                         codigo_curso = input('Código do Curso (ou clique ENTER para não alterar): ').strip().lower()
 
                         nome = nome if nome else aluno_encontrado[0]
                         data_nascimento = data_nascimento if data_nascimento else aluno_encontrado[1]
-                        matricula = matricula if matricula else aluno_encontrado[2]
+                        nova_matricula = nova_matricula if nova_matricula else aluno_encontrado[2]
                         codigo_curso = codigo_curso if codigo_curso else aluno_encontrado[4]
 
                         if nome and not isinstance(nome, str):
@@ -253,7 +254,9 @@ class MenuAluno:
                             pausar_execucao()
                             return
                         
-                        if data_nascimento:
+                        if isinstance(data_nascimento, datetime.date):
+                            data_nascimento = data_nascimento
+                        else:    
                             try:
                                 datetime.datetime.strptime(data_nascimento, '%Y-%m-%d')
                             except ValueError:
@@ -263,7 +266,7 @@ class MenuAluno:
                                 pausar_execucao()
                                 return
                             
-                        if matricula and (not matricula.isdigit() or len(matricula) != 11):
+                        if nova_matricula and (not nova_matricula.isdigit() or len(nova_matricula) != 11):
                             print(f'\n----------------------------------------------------')   
                             print(f'Matricula inválida. Deve conter 11 dígitos numéricos')
                             print(f'----------------------------------------------------') 
@@ -278,6 +281,9 @@ class MenuAluno:
                             return 
                         
                         id_curso_fk = self.curso.buscar_id_curso_por_codigo(codigo=codigo_curso)
+                        if id_curso_fk is not None and isinstance(id_curso_fk, tuple):
+                            id_curso_fk = id_curso_fk[0]
+
                         if id_curso_fk is None:
                             print(f'\n---------------------')
                             print(f'Curso não encontrado.')
@@ -286,20 +292,21 @@ class MenuAluno:
                             return
                         
                         
-                        localizar_aluno = self.aluno.buscar_aluno_por_matricula(matricula=matricula)
-                        if localizar_aluno and aluno_encontrado[2] != matricula:
-                            print(f'\n-----------------------------------------------') 
-                            print(f'Número de matrícula (CPF) já consta no sistema!')
-                            print(f'-----------------------------------------------') 
-                            pausar_execucao()
-                            return
+                        if nova_matricula != aluno_encontrado[2]:
+                            aluno_com_matricula = self.aluno.buscar_aluno_por_matricula(matricula=nova_matricula)
+                            if aluno_com_matricula:
+                                print(f'\n-----------------------------------------------') 
+                                print(f'Número de matrícula (CPF) já consta no sistema!')
+                                print(f'-----------------------------------------------') 
+                                pausar_execucao()
+                                return
 
                         
-                        self.aluno.atualizar_aluno(novo_nome=nome, nova_data_nascimento=data_nascimento, nova_matricula=matricula, novo_id_curso_fk=id_curso_fk)
+                        self.aluno.atualizar_aluno(novo_nome=nome, nova_data_nascimento=data_nascimento, nova_matricula=nova_matricula, novo_id_curso_fk=id_curso_fk,matricula=aluno_encontrado[2])
                         print(f'\n-------------------------------')
                         print(f'Aluno atualizado com sucesso!')
                         print(f'-------------------------------')
-                        return 
+                        pausar_execucao() 
                     except ValueError:   
                         print(f'\n-----------------------------------------') 
                         print(f'Oops! Um erro ocorreu. Tente novamente...')   

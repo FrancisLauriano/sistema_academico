@@ -52,7 +52,7 @@ class Aluno:
         db.get_conexao().close()
         return aluno
 
-    def atualizar_aluno(self, novo_nome=None, nova_data_nascimento=None, nova_matricula=None, novo_id_curso_fk=None):
+    def atualizar_aluno(self, novo_nome=None, nova_data_nascimento=None, nova_matricula=None, novo_id_curso_fk=None, matricula=None):
         db = Database()
         db.conectar()
         query = '''UPDATE Alunos 
@@ -63,7 +63,7 @@ class Aluno:
             nova_data_nascimento or self.__data_nascimento, 
             nova_matricula or self.__matricula, 
             novo_id_curso_fk or self.__id_curso_fk,
-            self.__matricula
+            matricula or self.__matricula
         ))
         db.get_conexao().commit()
         db.get_cursor().close()
@@ -75,7 +75,7 @@ class Aluno:
         db.conectar()
         query = '''DELETE FROM Alunos WHERE matricula = %s'''
         self.__matricula = matricula
-        db.get_cursor().execute(query, (self.__matricula))
+        db.get_cursor().execute(query, (self.__matricula,))
         db.get_conexao().commit()
         db.get_cursor().close()
         db.get_conexao().close()

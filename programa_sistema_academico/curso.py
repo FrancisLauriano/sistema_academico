@@ -73,13 +73,13 @@ class Curso:
         return alunos
     
 
-    def atualizar_curso(self, novo_codigo=None, novo_nome=None, nova_carga_horaria=None):
+    def atualizar_curso(self, novo_codigo=None, novo_nome=None, nova_carga_horaria=None, codigo=None):
         db = Database()
         db.conectar()
         query = '''UPDATE Cursos 
                 SET codigo = %s, nome = %s, carga_horaria = %s 
                 WHERE codigo = %s'''
-        db.get_cursor().execute(query, (novo_codigo or self.__codigo, novo_nome or self.__nome, nova_carga_horaria or self.__carga_horaria))
+        db.get_cursor().execute(query, (novo_codigo or self.__codigo, novo_nome or self.__nome, nova_carga_horaria or self.__carga_horaria, codigo or self.__codigo))
         db.get_conexao().commit()
         db.get_cursor().close()
         db.get_conexao().close()
@@ -90,7 +90,7 @@ class Curso:
         db.conectar()
         query = '''DELETE FROM Cursos WHERE codigo = %s'''
         self.__codigo = codigo
-        db.get_cursor().execute(query, (self.__codigo))
+        db.get_cursor().execute(query, (self.__codigo,))
         db.get_conexao().commit()
         db.get_cursor().close()
         db.get_conexao().close()

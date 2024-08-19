@@ -49,7 +49,7 @@ class MenuCurso:
         try:
             codigo = input('Código: ').strip().lower()
             nome = input('Nome: ').strip().lower()
-            carga_horaria = float(input('Carga Horária): ')).strip()
+            carga_horaria = float(input('Carga Horária: '))
             
             
             # validação de código do curso
@@ -120,8 +120,7 @@ class MenuCurso:
                 
                 print(f'{codigo:<{largura_codigo}} | {nome:<{largura_nome}} | {carga_horaria:<{largura_carga_horaria}}')
                 print('-'*largura_total)
-                pausar_execucao()
-            return cursos
+            pausar_execucao()
         else:
             print(f'\n-----------------------')  
             print(f'Nenhum curso encontrado')
@@ -135,7 +134,6 @@ class MenuCurso:
         largura_nome = 60
         largura_carga_horaria = 20
         
-
         codigo = input('Informe o código do curso: ').strip().lower()
 
         curso = self.curso.buscar_curso_por_codigo(codigo=codigo)
@@ -177,7 +175,6 @@ class MenuCurso:
 
                 print(f'{nome:<{largura_nome}} | {dataNasc:<{largura_DN}} | {matricula:<{largura_matricula}} | {dataMatricula:<{largura_data_matricula}}')
                 print('-'*largura_total)
-                pausar_execucao()
             return lista_alunos
         else:
             print(f'\n-----------------------')  
@@ -226,17 +223,17 @@ class MenuCurso:
                     limpar_terminal()
                     print('\n------------------------ ATUALIZAR CURSO ------------------------\n')
                     try:
-                        codigo = input('Código (ou clique ENTER para não alterar): ').strip().lower()
+                        novo_codigo = input('Código (ou clique ENTER para não alterar): ').strip().lower()
                         nome = input('Nome (ou clique ENTER para não alterar): ').strip().lower()
-                        carga_horaria = float(input('Carga Horária (ou clique ENTER para não alterar): ')).strip().lower()
+                        carga_horaria = input('Carga Horária (ou clique ENTER para não alterar): ').strip().lower()
                         
 
-                        codigo = codigo if codigo else curso_encontrado[0]
+                        novo_codigo = novo_codigo if novo_codigo else curso_encontrado[0]
                         nome = nome if nome else curso_encontrado[1]
                         carga_horaria = carga_horaria if carga_horaria else curso_encontrado[2]
 
 
-                        if codigo and not codigo.isdigit():
+                        if novo_codigo and not novo_codigo.isdigit():
                             print(f'\n-------------------------') 
                             print(f'Código do curso inválido.')
                             print(f'-------------------------') 
@@ -250,24 +247,28 @@ class MenuCurso:
                             pausar_execucao()
                             return
                         
-                        if carga_horaria and not isinstance(carga_horaria, (float, int)):
-                            print(f'\n-------------------------') 
-                            print(f'Código do curso inválido.')
-                            print(f'-------------------------') 
-                            pausar_execucao()
-                            return 
+                        if carga_horaria:
+                            try:
+                                carga_horaria = float(carga_horaria)
+                            except ValueError:    
+                                print(f'\n-------------------------') 
+                                print(f'Código do curso inválido.')
+                                print(f'-------------------------') 
+                                pausar_execucao()
+                                return 
                         
-                   
-                        localizar_curso = self.curso.buscar_curso_por_codigo(codigo=codigo)
-                        if localizar_curso and curso_encontrado[0] != codigo:
-                            print(f'\n-----------------------------------------------')  
-                            print(f'Número de código de curso já consta no sistema!')
-                            print(f'-----------------------------------------------') 
-                            pausar_execucao()
-                            return
+                        
+                        if novo_codigo != curso_encontrado[0]:
+                            localizar_curso = self.curso.buscar_curso_por_codigo(codigo=novo_codigo)
+                            if localizar_curso:
+                                print(f'\n-----------------------------------------------')  
+                                print(f'Número de código de curso já consta no sistema!')
+                                print(f'-----------------------------------------------') 
+                                pausar_execucao()
+                                return
 
 
-                        self.curso.atualizar_curso(novo_codigo=codigo, novo_nome=nome, nova_carga_horaria=carga_horaria)
+                        self.curso.atualizar_curso(novo_codigo=novo_codigo, novo_nome=nome, nova_carga_horaria=carga_horaria, codigo=curso_encontrado[0])
                         print(f'\n-----------------------------')
                         print(f'Curso atualizado com sucesso!')
                         print(f'-----------------------------')
@@ -302,6 +303,19 @@ class MenuCurso:
         curso_encontrado = self.view_curso()
 
         if curso_encontrado is not None:
+            codigo = curso_encontrado[0]
+
+            alunos = self.curso.buscar_alunos_por_curso(codigo=codigo)
+            if alunos:
+                print(f'\n=================================================')
+                print(f'ATENÇÃO: Existem alunos matriculados neste curso:')
+                print(f'=================================================')
+                self.view_alunos(codigo=codigo)
+                print(f'\n=======================================================================')
+                print(f'Para excluir o curso, você deve primeiro remover ou realocar os alunos.')
+                print(f'=======================================================================')
+                pausar_execucao()
+                return
 
             print('\nDeseja excluir curso?')
             print('[1] Sim')
